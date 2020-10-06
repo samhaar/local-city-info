@@ -44,24 +44,28 @@ const DetailedWeather = props => {
     console.log(dayOfWeek);
 
     return (
-      <Card key={index} className="text-center weather-card">
+      <Card key={index} className="weather-card">
         <Card.Header className='detailed-weather-title'>{dayOfWeek}</Card.Header>
         <Card.Img variant="top" src={`http://openweathermap.org/img/wn/${imgCode}@2x.png`} />
         <Card.Body>
           {/* <Card.Text>Current Temp: {day.currentTemp}°F</Card.Text> */}
-          <Card.Text>Hi: {convertKtoF(day.temp.max)}°F</Card.Text>
-          <Card.Text>Lo: {convertKtoF(day.temp.min)}°F</Card.Text>
-          <Card.Text>Humidity: {day.humidity}%</Card.Text>
-          <Card.Text>Wind Speed: {day.wind_speed} MPH</Card.Text>
+          <Card.Text><span>Hi:</span> {convertKtoF(day.temp.max)}°F</Card.Text>
+          <Card.Text><span>Lo:</span> {convertKtoF(day.temp.min)}°F</Card.Text>
+          <Card.Text><span>Feels like:</span> {convertKtoF(day.feels_like.day)}°F</Card.Text>
+          <Card.Text><span>Humidity:</span> {day.humidity}%</Card.Text>
+          <Card.Text><span>Wind Speed:</span> {day.wind_speed} MPH</Card.Text>
         </Card.Body>
       </Card>
     )
   });
   return (
-    <div>
+    <div className="detailed-weather">
       <h1>Detailed Weather Information</h1>
       <CardDeck className='detailed-weather-container'>
-        {weatherArr}
+        <div className="detailed-weather-wrapper">
+          {weatherArr}
+        </div>
+
       </CardDeck>
     </div>
   );
