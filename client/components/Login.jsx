@@ -6,6 +6,16 @@ import Tab from 'react-bootstrap/Tab';
 import { Link } from 'react-router-dom';
 
 function Login() {
+
+  const login = (user) => {
+    const token = user.getAuthResponse().id_token;
+    fetch('/api/oAuth'), {
+      method: 'POST',
+      body: JSON.stringify({
+        token: token
+      })
+    }
+  }
   return (
     <div className="container signup-login-container">
       <h1>Welcome!</h1>
@@ -53,9 +63,11 @@ function Login() {
             <Button variant="primary" type="submit">
               Log In
             </Button>
+            
           </Form>
         </Tab>
       </Tabs>
+      <div class="g-signin2" data-onsuccess="onSignIn"></div>
     </div>
   );
 }
