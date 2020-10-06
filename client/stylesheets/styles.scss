@@ -208,36 +208,88 @@
   min-width: 150px;
 } */
 @media screen and (min-width: 500px) {
-  .card-deck{
-    display: grid;
-    grid-template: auto/repeat(1, minmax(250px, 1fr));
-    .card{
-      margin-bottom: 15px; 
+  .activities-container {
+    .card-deck{
+      display: grid;
+      grid-template: auto/repeat(1, minmax(250px, 1fr));
+      .card{
+        margin-bottom: 15px; 
+      }
+    }
+  }
+
+  .news-container {
+    .card-deck{
+      display: grid;
+      grid-template: auto/repeat(1, minmax(250px, 1fr));
+      .card{
+        margin-bottom: 15px; 
+      }
     }
   }
 }
 
 @media screen and (min-width: 750px) {
-  .card-deck{
-    display: grid;
-    grid-template: auto/repeat(2, minmax(250px, 1fr));
-    .card{
-      margin-bottom: 15px; 
+  .activities-container {
+    .card-deck{
+      display: grid;
+      grid-template: auto/repeat(2, minmax(250px, 1fr));
+      .card{
+        margin-bottom: 15px; 
+      }
+    }
+  }
+  .news-container {
+    .card-deck{
+      display: grid;
+      grid-template: auto/repeat(2, minmax(250px, 1fr));
+      .card{
+        margin-bottom: 15px; 
+      }
     }
   }
 }
 
 @media screen and (min-width: 1000px) {
-  .card-deck{
-    display: grid;
-    grid-template: auto/repeat(4, minmax(250px, 1fr));
+  .activities-container {
+    .card-deck{
+      display: grid;
+      grid-template: auto/repeat(4, minmax(250px, 1fr));
+      .card{
+        margin-bottom: 15px; 
+      }
+    }
+  }
+  .news-container {
+    .card-deck{
+      display: grid;
+      grid-template: auto/repeat(4, minmax(250px, 1fr));
+      .card{
+        margin-bottom: 15px; 
+      }
+    }
   }
 }
 
 
 @media screen and (min-width: 1300px) {
-  .card-deck{
-    display: grid;
-    grid-template: auto/repeat(5, minmax(250px, 1fr));
+  .activities-container {
+    .card-deck{
+      display: grid;
+      grid-template: auto/repeat(5, minmax(250px, 1fr));
+      .card{
+        margin-bottom: 15px; 
+      }
+    }
+  }
+
+  .news-container {
+    .card-deck{
+      display: grid;
+      grid-template: auto/repeat(5, minmax(250px, 1fr));
+      .card{
+        margin-bottom: 15px; 
+      }
+    }
   }
 }
