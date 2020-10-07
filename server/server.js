@@ -1,25 +1,29 @@
 const express = require('express');
 const path = require('path');
 const bodyParser = require('body-parser');
+const cors = require('cors');
 
 const app = express();
-const PORT = 5000;
+const PORT = 3000;
 
 // routers
 const businessesRouter = require('./routes/businesses.js');
 const locationRouter = require('./routes/location.js');
 const newsRouter = require('./routes/news.js');
 const weatherRouter = require('./routes/weather.js');
+const signinRouter = require('./routes/signin.js');
 
 // application-level middleware
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(cors());
 
 // route handlers
 app.use('/businesses', businessesRouter);
 app.use('/location', locationRouter);
 app.use('/news', newsRouter);
 app.use('/weather', weatherRouter);
+app.use('/signin', signinRouter);
 
 if (process.env.NODE_ENV === 'production') {
   app.use('/build', express.static(path.resolve(__dirname, '..build')));
