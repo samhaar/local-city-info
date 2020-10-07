@@ -3,8 +3,6 @@ import { connect } from "react-redux";
 import Card from "react-bootstrap/Card";
 import CardDeck from "react-bootstrap/CardDeck";
 import Button from "react-bootstrap/Button";
-import Tabs from "react-bootstrap/Tabs";
-import Tab from "react-bootstrap/Tab";
 
 const mapStateToProps = ({
   informationReducer: { lat, long, countryCode },
@@ -91,15 +89,13 @@ const ActivitiesView = (props) => {
   };
 
   const deleteFav = (businessId) => {
-    const newFav = [];
+    console.log("businessId: ", businessId);
     for (let i = 0; i < favoriteActivities.length; i++) {
       if (favoriteActivities[i].id === businessId) {
         favoriteActivities.splice(i, 1);
-      } else {
-        newFav.push(favoriteActivities[i]);
       }
     }
-    setFavoriteActivities(createActivities(newFav));
+    setFavoriteActivities(createActivities(favoriteActivities));
   };
 
   useEffect(() => {
