@@ -52,11 +52,14 @@ const WeatherView = props => {
     return data.map((day, i) => {
       return (
         <div key={`dd${i}`} className='weather-wrapper'>
-          <strong><center>{dayOfWeek(dayNum)}</center></strong>
-          <img src={`http://openweathermap.org/img/wn/${day.current.weather[0].icon}@2x.png`}></img>
-          <div className='temp-wrapper'>
-            <p>{convertKtoF(day.daily[0].temp.max)}°F</p>
-            <p>{convertKtoF(day.daily[0].temp.min)}°F</p>
+          <div className="weather-bg">
+            <strong><center>{dayOfWeek(dayNum)}</center></strong>
+            <p className="weather-desc">{day.current.weather[0].description}</p>
+            <img src={`http://openweathermap.org/img/wn/${day.current.weather[0].icon}@2x.png`}></img>
+            <div className='temp-wrapper'>
+              <p>Hi: {convertKtoF(day.daily[0].temp.max)}°F</p>
+              <p>Low: {convertKtoF(day.daily[0].temp.min)}°F</p>
+            </div>
           </div>
         </div>
       )
@@ -75,9 +78,11 @@ const WeatherView = props => {
     const weatherDivs = createWeatherBoxes(weatherData);
     return (
       <div className='weather-container'>
+
         <Link to={'/detailed-weather'}>
           {weatherDivs}
         </Link>
+
       </div>
     );
   } else {
