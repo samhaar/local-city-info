@@ -1,0 +1,363 @@
+@import "variables";
+
+* {
+  box-sizing: border-box;
+  margin:0;
+  padding:0;
+  text-decoration: none;
+}
+
+.main-content {
+  width: 100%;
+  padding: 30px;  
+}
+
+.text-centered {
+  text-align: center;
+}
+
+.news-container {
+  margin: 50px 0px;
+}
+
+.item-wrapper {
+  display: flex;
+  box-shadow: 2px 2px $black;
+  height: 250px;
+  width: 18%;
+  min-width: 150px;
+  border: 1px solid $black;
+  margin: 10px;
+  font-size: 12px;
+  margin-top: 5px;
+  box-shadow: 2px 2px $black;
+}
+
+.item-wrapper img{
+  height: 150px;
+  width: 100%;
+  display: flex;
+  border: 1px solid $black;
+}
+
+.item-wrapper p, strong{
+  margin: 0;
+  font-size: 11px;
+  height: auto;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.weather-container {
+  display: flex;
+  width: fit-content;
+  align-self: flex-end;
+
+  a {
+    text-decoration: none;
+    width: 150px;
+  }
+}
+
+.weather-wrapper {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid $black;
+  border-radius: 2%;
+  box-shadow: 2px 2px $black;
+  margin-right: 5px;
+  margin-top: 5px;
+  background-color: $tranparent-white;
+
+  a {
+    text-decoration: none;
+  }
+
+  img{
+    margin: 0px;
+    align-self: center;
+  }
+  
+  p{
+    width: auto;
+    justify-content: center;
+  }
+  
+  strong{
+    margin: 5px 0px 0px 0px;
+    font-size: 1rem;
+  }
+}
+
+.temp-wrapper {
+  display: flex;
+  justify-content: space-between;
+}
+
+.temp-wrapper p{
+  margin: 0px 5px 5px 5px;
+}
+
+.detailed-weather {
+  text-align: center;
+  padding: 20px 0;
+  .detailed-weather-container {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin-top: 20px;
+
+    .detailed-weather-wrapper {
+      margin: 0 auto;
+
+      .weather-card{
+        margin-bottom: 15px;
+        border: 2px solid $black;
+        .detailed-weather-title{
+          background-color: $blue;
+          font-weight: 500;
+        }
+        .card-body{
+          text-align: left;
+          .card-text{
+            span{
+              font-weight: bold;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.banner {
+  width: 100%;
+}
+
+.hero-container {
+  background-image: url('https://www.developmentguild.com/assets/nyc-banner-night.jpg');
+  display: flex;
+  flex-direction: column;
+  height: 120%;
+  min-height: 400px;
+  justify-content: space-between;
+  align-items: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.search-input {
+  width: 80%;
+  min-width:300px;
+  height: 30px;
+  margin-bottom: 10px;
+}
+
+.search-btn {
+  width: 50px;
+  height: 30px;
+  margin-bottom: 10px;
+  font-size:13px;
+  font-weight: bold;
+}
+
+.search-wrapper h1{
+  font-size: 27px;
+  margin-bottom: 10px;
+}
+
+.search-wrapper {
+  background: $tranparent-white;
+  padding-top: 15px;
+  border-radius: 3px;
+  width:24%;
+  min-width:450px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.signup-login-container {
+  width: 600px;
+}
+
+.signup-login-form {
+  padding: 20px 0px;
+}
+
+.card-img-container {
+	height: 250px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	overflow: hidden;
+	background: $light-gray;
+}
+
+.card-img {
+	height: 100%;
+}
+
+#title {
+  font-size: 27px;
+}
+
+.loginButton {
+  align-self: flex-start;
+}
+
+#loginButton {
+  margin:5px;
+  width: 50px;
+  height: 30px;
+  margin-bottom: 10px;
+  font-size:13px;
+  font-weight: bold;
+  background-color: Transparent;
+  transition: color, background-color;
+  border-radius:5px; 
+}
+
+#loginButton:hover {
+  color:$white;
+  background-color:$dark-gray;
+}
+
+.top-container {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+@media screen and (min-width: 500px) {
+  .activities-container {
+    .card-deck{
+      display: grid;
+      grid-template: auto/repeat(1, minmax(250px, 1fr));
+      .card{
+        margin-bottom: 15px; 
+      }
+    }
+  }
+
+  .news-container {
+    .card-deck{
+      display: grid;
+      grid-template: auto/repeat(1, minmax(250px, 1fr));
+      .card{
+        margin-bottom: 15px; 
+      }
+    }
+  }
+
+  .detailed-weather-container {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    .detailed-weather-wrapper {
+      display: grid;
+      grid-template: auto/repeat(1, 250px);
+      padding: 0 15px;
+    }
+  }
+}
+
+@media screen and (min-width: 750px) {
+  .activities-container {
+    .card-deck{
+      display: grid;
+      grid-template: auto/repeat(2, minmax(250px, 1fr));
+      .card{
+        margin-bottom: 15px; 
+      }
+    }
+  }
+  .news-container {
+    .card-deck{
+      display: grid;
+      grid-template: auto/repeat(2, minmax(250px, 1fr));
+      .card{
+        margin-bottom: 15px; 
+      }
+    }
+  }
+
+  .detailed-weather-container {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    .detailed-weather-wrapper {
+      display: grid;
+      grid-template: auto/repeat(3, 250px);
+      padding: 0 15px;
+    }
+  }
+}
+
+@media screen and (min-width: 1000px) {
+  .activities-container {
+    .card-deck{
+      display: grid;
+      grid-template: auto/repeat(4, minmax(250px, 1fr));
+      .card{
+        margin-bottom: 15px; 
+      }
+    }
+  }
+  .news-container {
+    .card-deck{
+      display: grid;
+      grid-template: auto/repeat(4, minmax(250px, 1fr));
+      .card{
+        margin-bottom: 15px; 
+      }
+    }
+  }
+
+  .detailed-weather-container {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    .detailed-weather-wrapper {
+      display: grid;
+      grid-template: auto/repeat(4, 250px);
+      padding: 0 15px;
+    }
+  }
+}
+
+
+@media screen and (min-width: 1300px) {
+  .activities-container {
+    .card-deck{
+      display: grid;
+      grid-template: auto/repeat(5, minmax(250px, 1fr));
+      .card{
+        margin-bottom: 15px; 
+      }
+    }
+  }
+
+  .news-container {
+    .card-deck{
+      display: grid;
+      grid-template: auto/repeat(5, minmax(250px, 1fr));
+      .card{
+        margin-bottom: 15px; 
+      }
+    }
+  }
+
+  .detailed-weather-container {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    .detailed-weather-wrapper {
+      display: grid;
+      grid-template: auto/repeat(7, 205px);
+      padding: 0 15px;
+    }
+  }
+}

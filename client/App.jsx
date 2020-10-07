@@ -5,7 +5,7 @@ import {
   Route,
 } from "react-router-dom";
 import Login from './components/Login.jsx';
-import './styles.css';
+import './stylesheets/styles.scss';
 import DetailedWeather from './components/DetailedWeather.jsx';
 import FrontPage from './components/FrontPage.jsx';
 
