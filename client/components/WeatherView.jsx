@@ -60,7 +60,10 @@ const WeatherView = (props) => {
 
   const createWeatherBoxes = (data) => {
     const dayNum = new Date().getDay();
+    // const date = new Date(data.daily[0].dt * 1000);
+    console.log(data);
     return data.map((day, i) => {
+      const date = new Date(day.daily[0].dt * 1000);
       return (
         <div key={`dd${i}`} className="weather-wrapper">
           <strong>

@@ -58,7 +58,7 @@ const DetailedWeather = (props) => {
     console.log("Day: ", day.dt);
     const imgCode = day.weather[0].icon;
     const dayOfWeek = daysOfWeek[index];
-
+    const date = new Date(day.dt * 1000);
     console.log(dayOfWeek);
 
     return (
