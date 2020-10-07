@@ -49,11 +49,14 @@ const WeatherView = props => {
 
   const createWeatherBoxes = (data) => {
     const dayNum = new Date().getDay();
+    // const date = new Date(data.daily[0].dt * 1000);
+    console.log(data)
     return data.map((day, i) => {
+      const date = new Date(day.daily[0].dt * 1000);
       return (
         <div key={`dd${i}`} className='weather-wrapper'>
           <div className="weather-bg">
-            <strong><center>{dayOfWeek(dayNum)}</center></strong>
+            <strong><center>{date.toDateString()}</center></strong>
             <p className="weather-desc">{day.current.weather[0].description}</p>
             <img src={`http://openweathermap.org/img/wn/${day.current.weather[0].icon}@2x.png`}></img>
             <div className='temp-wrapper'>

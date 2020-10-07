@@ -40,12 +40,12 @@ const DetailedWeather = props => {
     console.log('Day: ', day.dt);
     const imgCode = day.weather[0].icon;
     const dayOfWeek = daysOfWeek[index];
-
+    const date = new Date(day.dt * 1000);
     console.log(dayOfWeek);
 
     return (
       <Card key={index} className="weather-card">
-        <Card.Header className='detailed-weather-title'>{dayOfWeek}</Card.Header>
+        <Card.Header className='detailed-weather-title'>{date.toDateString()}</Card.Header>
         <Card.Text className="weather-description">{day.weather[0].description}</Card.Text>
         <Card.Img variant="top" src={`http://openweathermap.org/img/wn/${imgCode}@2x.png`} />
         <Card.Body>
