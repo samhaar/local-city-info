@@ -20,68 +20,42 @@ const ActivitiesView = (props) => {
   const DEFAULT_IMG =
     "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80";
 
-  const createActivities = (activitiesObject, category) => {
-    // console.log("category: ", category);
-    console.log("activitiesObject: ", activitiesObject);
-    return activitiesObject.map((activitiesInfo, i) => {
+  const createActivities = (listOfBusinesses) => {
+    return listOfBusinesses.map((businessInfo, i) => {
+      // console.log("businessInfo: ", businessInfo);
       return (
         <Card key={`activities-card-${i}`} className={"activity-card"}>
           <div className="card-img-container">
             <Card.Img
               className="card-img"
               variant="top"
-              src={activitiesInfo.image_url}
+              src={businessInfo.image_url}
             />
           </div>
           <Card.Body>
-            <Card.Title>{activitiesInfo.name}</Card.Title>
-            <Card.Text>Rating: {activitiesInfo.rating}</Card.Text>
-            <Card.Text>Reviews: {activitiesInfo.review}</Card.Text>
-            <Card.Text>Location: {activitiesInfo.location.address1}</Card.Text>
-            <button
-              className="favButton"
-              onClick={() => {
-                addToFav(activitiesInfo);
-              }}
-            >
-              Add to Favorites
-            </button>
-          </Card.Body>
-        </Card>
-      );
-    });
-  };
-
-  const favActivity = (fromDb) => {
-    // console.log("category: ", category);
-    // console.log("activitiesObject: ", activitiesObject);
-    return fromDb.map((activitiesInfo, i) => {
-      return (
-        <Card
-          key={`activities-card-${i}`}
-          className={"activity-card"}
-          style={{ width: "400px" }}
-        >
-          <div className="card-img-container">
-            <Card.Img
-              className="card-img"
-              variant="top"
-              src={activitiesInfo.image_url}
-            />
-          </div>
-          <Card.Body>
-            <Card.Title>{activitiesInfo.name}</Card.Title>
-            <Card.Text>Rating: {activitiesInfo.rating}</Card.Text>
-            <Card.Text>Reviews: {activitiesInfo.review}</Card.Text>
-            <Card.Text>Location: {activitiesInfo.location.address1}</Card.Text>
-            <button
-              className="favButton"
-              onClick={() => {
-                console.log("it clicked");
-              }}
-            >
-              Remove from Favorites
-            </button>
+            <Card.Title>{businessInfo.name}</Card.Title>
+            <Card.Text>Rating: {businessInfo.rating}</Card.Text>
+            <Card.Text>Reviews: {businessInfo.review}</Card.Text>
+            <Card.Text>Location: {businessInfo.location.address1}</Card.Text>
+            {!favoriteActivities.includes(businessInfo) ? (
+              <button
+                className="favButton"
+                onClick={() => {
+                  addFav(businessInfo);
+                }}
+              >
+                Add to Favorites
+              </button>
+            ) : (
+              <button
+                className="favButton"
+                onClick={() => {
+                  deleteFav(businessInfo.id);
+                }}
+              >
+                Delete from Favorites
+              </button>
+            )}
           </Card.Body>
         </Card>
       );
@@ -105,18 +79,32 @@ const ActivitiesView = (props) => {
   };
 
   const changeCategory = (category) => {
-    return () => {
-      fetchData(category);
-      // setCurrentActivities(createActivities(activitiesData, category)); // DISCUSS
-    };
+    return () => fetchData(category);
+    // setCurrentActivities(createActivities(activitiesData, category)); // DISCUSS
   };
 
-  const addToFav = (info) => {
+  const addFav = (info) => {
+    console.log("info: ", info);
+
     if (!favoriteActivities.includes(info)) {
       favoriteActivities.push(info);
-      console.log("info: ", info);
+      console.log("favoriteActivities: ", favoriteActivities);
+
       setFavoriteActivities(createActivities(favoriteActivities));
     }
+  };
+
+  const deleteFav = (businessId) => {
+    console.log("businessId: ", businessId);
+    const newFav = [];
+    for (let i = 0; i < favoriteActivities.length; i++) {
+      if (favoriteActivities[i].id !== businessId) {
+        newFav.push(favoriteActivities[i]);
+      }
+    }
+    let newFavs = createActivities(newFav);
+    console.log("newFav: ", newFav);
+    setFavoriteActivities(newFavs);
   };
 
   useEffect(() => {
@@ -131,15 +119,15 @@ const ActivitiesView = (props) => {
 
   if (fetchedData) {
     const CATEGORIES = [
-      "restaurants",
-      "bars",
-      "climbing",
-      "health",
-      "bowling",
-      "fitness",
+      "Restaurants",
+      "Bars",
+      "Climbing",
+      "Health",
+      "Bowling",
+      "Fitness",
     ];
-    const buttonsArray = [];
 
+    const buttonsArray = [];
     for (let i = 0; i < CATEGORIES.length; i += 1) {
       buttonsArray.push(
         <Button
