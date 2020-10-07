@@ -59,14 +59,18 @@ const DetailedWeather = props => {
     )
   });
   return (
-    <div className="detailed-weather">
-      <h1>Detailed Weather Information</h1>
-      <CardDeck className='detailed-weather-container'>
-        <div className="detailed-weather-wrapper">
-          {weatherArr}
-        </div>
-
-      </CardDeck>
+    <div className="detailed-weather-main">
+      <div className="weather-header">
+        <Link to={'/'} className='home-btn'>Home</Link>
+      </div>
+      <div className="detailed-weather">
+        <h1>Detailed Weather Information</h1>
+        <CardDeck className='detailed-weather-container'>
+          <div className="detailed-weather-wrapper">
+            {weatherArr}
+          </div>
+        </CardDeck>
+      </div>
     </div>
   );
 }
