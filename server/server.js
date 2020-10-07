@@ -11,11 +11,8 @@ const businessesRouter = require('./routes/businesses.js');
 const locationRouter = require('./routes/location.js');
 const newsRouter = require('./routes/news.js');
 const weatherRouter = require('./routes/weather.js');
-<<<<<<< HEAD
 const favoritesRouter = require('./routes/favorites.js');
-=======
 const signinRouter = require('./routes/signin.js');
->>>>>>> master
 
 // application-level middleware
 app.use(bodyParser.json());
@@ -27,11 +24,8 @@ app.use('/businesses', businessesRouter);
 app.use('/location', locationRouter);
 app.use('/news', newsRouter);
 app.use('/weather', weatherRouter);
-<<<<<<< HEAD
 app.use('/favorites', favoritesRouter);
-=======
 app.use('/signin', signinRouter);
->>>>>>> master
 
 if (process.env.NODE_ENV === 'production') {
   app.use('/build', express.static(path.resolve(__dirname, '..build')));
