@@ -54,7 +54,6 @@
   width: fit-content;
   align-self: flex-end;
  
-
   a {
     text-decoration: none;
     width: 200px;
@@ -144,8 +143,15 @@
           background-color: $blue;
           font-weight: 500;
         }
+
+        .temp-group {
+          display: flex;
+          justify-content: space-between;
+        }
+
         .card-body{
           text-align: left;
+          padding: 1rem;
           .card-text{
             margin-bottom: .5rem;
             span{
