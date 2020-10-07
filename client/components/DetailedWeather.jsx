@@ -46,6 +46,7 @@ const DetailedWeather = props => {
     return (
       <Card key={index} className="weather-card">
         <Card.Header className='detailed-weather-title'>{dayOfWeek}</Card.Header>
+        <Card.Text className="weather-description">{day.weather[0].description}</Card.Text>
         <Card.Img variant="top" src={`http://openweathermap.org/img/wn/${imgCode}@2x.png`} />
         <Card.Body>
           {/* <Card.Text>Current Temp: {day.currentTemp}°F</Card.Text> */}
@@ -57,7 +58,7 @@ const DetailedWeather = props => {
             <Card.Text><span>Feels like:</span> {convertKtoF(day.feels_like.day)}°F</Card.Text>
             <Card.Text><span>Humidity:</span> {day.humidity}%</Card.Text>
             <Card.Text><span>WS:</span> {day.wind_speed} MPH</Card.Text>
-            <Card.Text><span>UV:</span> {day.uvi}</Card.Text>
+            <Card.Text><span>UV Index:</span> {day.uvi}</Card.Text>
           </div>
         </Card.Body>
       </Card>
@@ -69,7 +70,7 @@ const DetailedWeather = props => {
         <Link to={'/'} className='home-btn'>Home</Link>
       </div>
       <div className="detailed-weather">
-        <h1>Detailed Weather Information</h1>
+        <h1>7 Day Weather</h1>
         <CardDeck className='detailed-weather-container'>
           <div className="detailed-weather-wrapper">
             {weatherArr}
