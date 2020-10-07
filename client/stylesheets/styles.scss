@@ -143,6 +143,10 @@
           background-color: $blue;
           font-weight: 500;
         }
+        .weather-description{
+          margin-top: 10px;
+          text-transform: capitalize;
+        }
 
         .temp-group {
           display: flex;
