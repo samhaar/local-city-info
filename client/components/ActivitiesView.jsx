@@ -36,23 +36,23 @@ const ActivitiesView = (props) => {
             <Card.Text>Reviews: {businessInfo.review}</Card.Text>
             <Card.Text>Location: {businessInfo.location.address1}</Card.Text>
             {!favoriteActivities.includes(businessInfo) ? (
-              <button
-                className="favButton"
+              <Button
+                className="cardButton"
                 onClick={() => {
                   addFav(businessInfo);
                 }}
               >
                 Add to Favorites
-              </button>
+              </Button>
             ) : (
-              <button
-                className="favButton"
+              <Button
+                className="cardButton"
                 onClick={() => {
                   deleteFav(businessInfo.id);
                 }}
               >
                 Delete from Favorites
-              </button>
+              </Button>
             )}
           </Card.Body>
         </Card>
