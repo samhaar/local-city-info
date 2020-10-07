@@ -6,6 +6,7 @@ const initialState = {
   countryCode: "US",
   currentUser: "",
   weatherDays: [],
+  isLoggedin: false,
 };
 
 const informationReducer = (state = initialState, action) => {
@@ -22,6 +23,7 @@ const informationReducer = (state = initialState, action) => {
       return {
         ...state,
         currentUser: action.payload,
+        isLoggedin: true,
       };
     case types.ADD_WEATHER:
       // console.log('action payload ', action.payload);

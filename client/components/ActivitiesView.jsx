@@ -84,27 +84,22 @@ const ActivitiesView = (props) => {
   };
 
   const addFav = (info) => {
-    console.log("info: ", info);
-
     if (!favoriteActivities.includes(info)) {
       favoriteActivities.push(info);
-      console.log("favoriteActivities: ", favoriteActivities);
-
       setFavoriteActivities(createActivities(favoriteActivities));
     }
   };
 
   const deleteFav = (businessId) => {
-    console.log("businessId: ", businessId);
     const newFav = [];
     for (let i = 0; i < favoriteActivities.length; i++) {
       if (favoriteActivities[i].id !== businessId) {
         newFav.push(favoriteActivities[i]);
+      } else {
+        favoriteActivities.splice(i, 1);
       }
     }
-    let newFavs = createActivities(newFav);
-    console.log("newFav: ", newFav);
-    setFavoriteActivities(newFavs);
+    setFavoriteActivities(createActivities(newFav));
   };
 
   useEffect(() => {
