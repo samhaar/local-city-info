@@ -49,11 +49,16 @@ const DetailedWeather = props => {
         <Card.Img variant="top" src={`http://openweathermap.org/img/wn/${imgCode}@2x.png`} />
         <Card.Body>
           {/* <Card.Text>Current Temp: {day.currentTemp}°F</Card.Text> */}
-          <Card.Text><span>Hi:</span> {convertKtoF(day.temp.max)}°F</Card.Text>
-          <Card.Text><span>Lo:</span> {convertKtoF(day.temp.min)}°F</Card.Text>
-          <Card.Text><span>Feels like:</span> {convertKtoF(day.feels_like.day)}°F</Card.Text>
-          <Card.Text><span>Humidity:</span> {day.humidity}%</Card.Text>
-          <Card.Text><span>Wind Speed:</span> {day.wind_speed} MPH</Card.Text>
+          <div className="temp-group">
+            <Card.Text><span>Hi:</span> {convertKtoF(day.temp.max)}°F</Card.Text>
+            <Card.Text><span>Lo:</span> {convertKtoF(day.temp.min)}°F</Card.Text>
+          </div>
+          <div className="temp-details">
+            <Card.Text><span>Feels like:</span> {convertKtoF(day.feels_like.day)}°F</Card.Text>
+            <Card.Text><span>Humidity:</span> {day.humidity}%</Card.Text>
+            <Card.Text><span>WS:</span> {day.wind_speed} MPH</Card.Text>
+            <Card.Text><span>UV:</span> {day.uvi}</Card.Text>
+          </div>
         </Card.Body>
       </Card>
     )
