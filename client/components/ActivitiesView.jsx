@@ -93,10 +93,10 @@ const ActivitiesView = (props) => {
   const deleteFav = (businessId) => {
     const newFav = [];
     for (let i = 0; i < favoriteActivities.length; i++) {
-      if (favoriteActivities[i].id !== businessId) {
-        newFav.push(favoriteActivities[i]);
-      } else {
+      if (favoriteActivities[i].id === businessId) {
         favoriteActivities.splice(i, 1);
+      } else {
+        newFav.push(favoriteActivities[i]);
       }
     }
     setFavoriteActivities(createActivities(newFav));
