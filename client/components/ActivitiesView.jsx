@@ -3,12 +3,14 @@ import { connect } from "react-redux";
 import Card from "react-bootstrap/Card";
 import CardDeck from "react-bootstrap/CardDeck";
 import Button from "react-bootstrap/Button";
+// import { post } from "../../server/routes/news";
 
 const mapStateToProps = ({
   informationReducer: { lat, long, countryCode },
 }) => ({ lat, long, countryCode });
 
 const ActivitiesView = (props) => {
+  const { isLoggedIn, setIsLoggedIn } = props;
   const [activitiesData, setActivitiesData] = useState([]);
   const [fetchedData, setFetchedData] = useState(false);
   const [currentActivities, setCurrentActivities] = useState([]); // DISCUSS
@@ -35,25 +37,26 @@ const ActivitiesView = (props) => {
             <Card.Text>Rating: {businessInfo.rating}</Card.Text>
             <Card.Text>Reviews: {businessInfo.review}</Card.Text>
             <Card.Text>Location: {businessInfo.location.address1}</Card.Text>
-            {!favoriteActivities.includes(businessInfo) ? (
-              <Button
-                className="cardButton"
-                onClick={() => {
-                  addFav(businessInfo);
-                }}
-              >
-                Add to Favorites
-              </Button>
-            ) : (
-              <Button
-                className="cardButton"
-                onClick={() => {
-                  deleteFav(businessInfo.id);
-                }}
-              >
-                Delete from Favorites
-              </Button>
-            )}
+            {isLoggedIn &&
+              (!favoriteActivities.includes(businessInfo) ? (
+                <Button
+                  className="cardButton"
+                  onClick={() => {
+                    addFav(businessInfo);
+                  }}
+                >
+                  Add to Favorites
+                </Button>
+              ) : (
+                <Button
+                  className="cardButton"
+                  onClick={() => {
+                    deleteFav(businessInfo.id);
+                  }}
+                >
+                  Delete from Favorites
+                </Button>
+              ))}
           </Card.Body>
         </Card>
       );
@@ -82,10 +85,21 @@ const ActivitiesView = (props) => {
   };
 
   const addFav = (info) => {
+    // fetch("/favorties/", {
+    //   method: "POST",
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //   },
+    //   body: JSON.stringify(data),
+    // })
+    //   .then((res) => res.json())
+    //   .then(() => {
+    console.log("hello");
     if (!favoriteActivities.includes(info)) {
       favoriteActivities.push(info);
       setFavoriteActivities(createActivities(favoriteActivities));
     }
+    // });
   };
 
   const deleteFav = (businessId) => {
@@ -105,6 +119,20 @@ const ActivitiesView = (props) => {
   useEffect(() => {
     fetchData();
   }, [props.city]);
+
+  useEffect(() => {
+    fetch("/favorites/")
+      .then((res) => res.json())
+      .then((response) => {
+        if (response.isLoggedIn) {
+          setIsLoggedIn(true);
+          setFavoriteActivities(response.favorites);
+        } else {
+          setIsLoggedIn(false);
+        }
+      })
+      .catch((err) => console.log("getting favorites from db error: ", err));
+  });
 
   if (!activitiesData) return null;
 
@@ -135,10 +163,14 @@ const ActivitiesView = (props) => {
 
     return (
       <div className="activities-container">
-        <h1 id="title">Favorites List</h1>
-        <div className="cards-container">
-          <CardDeck>{favoriteActivities}</CardDeck>
-        </div>
+        {isLoggedIn && (
+          <div>
+            <h1 id="title">Favorites List</h1>
+            <div className="cards-container">
+              <CardDeck>{favoriteActivities}</CardDeck>
+            </div>
+          </div>
+        )}
         <h1 id="title">Local Activities Information</h1>
         <div className="activities-buttons">{buttonsArray}</div>
         <div className="cards-container">

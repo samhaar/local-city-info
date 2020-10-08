@@ -18,6 +18,7 @@ const mapStateToProps = ({
 }) => ({ lat, long, countryCode, city });
 
 const Search = (props) => {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [searchValue, setSearchValue] = useState("");
   const [city, setCity] = useState("");
 
@@ -62,10 +63,13 @@ const Search = (props) => {
     <div>
       <div className="hero-container">
         <div className="top-container">
-          <Link to={"/login"} className="loginButton">
-            <button id="loginButton">Login</button>
-            {/* <Login /> */}
-          </Link>
+          {!isLoggedIn ? (
+            <Link to={"/login"} className="loginButton">
+              <button id="loginButton">Login</button>
+            </Link>
+          ) : (
+            <div></div>
+          )}
           <WeatherView city={props.city} />
         </div>
         <div className="search-wrapper">
@@ -85,7 +89,11 @@ const Search = (props) => {
       </div>
       <div className="main-content">
         {/* <Favorites city={props.city} /> */}
-        <ActivitiesView city={props.city} />
+        <ActivitiesView
+          city={props.city}
+          isLoggedIn={isLoggedIn}
+          setIsLoggedIn={setIsLoggedIn}
+        />
         <NewsView city={props.city} />
       </div>
     </div>
