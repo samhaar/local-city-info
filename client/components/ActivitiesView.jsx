@@ -90,26 +90,48 @@ const ActivitiesView = (props) => {
   };
 
   const addFav = (info) => {
-    // fetch("/favorties/", {
-    //   method: "POST",
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //   },
-    //   body: JSON.stringify(data),
-    // })
-    //   .then((res) => res.json())
-    //   .then(() => {
-    console.log("hello");
-    const newFavs = favoriteActivities.slice();
-    if (!newFavs.includes(info)) {
-      newFavs.push(info);
-      setFavoriteActivities(newFavs);
-    }
-    // });
+    const token = localStorage.token;
+    fetch("/favorites/", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": token,
+      },
+      body: JSON.stringify(info),
+    })
+      .then((res) => res.json())
+      .then((response) => {
+        if (!response.isLoggedIn) {
+          setIsLoggedIn(false);
+        }
+      })
+      .catch((err) => console.log("getting favorites from db error: ", err));
+      
+      const newFavs = favoriteActivities.slice();
+      if (!newFavs.includes(info)) {
+        newFavs.push(info);
+        setFavoriteActivities(newFavs);
+      }
   };
 
   const deleteFav = (businessId) => {
-    console.log("businessId: ", businessId);
+    const token = localStorage.token;
+    fetch("/favorites/", {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": token,
+      },
+      body: JSON.stringify({ id: businessId }),
+    })
+      .then((res) => res.json())
+      .then((response) => {
+        if (!response.isLoggedIn) {
+          setIsLoggedIn(false);
+        }
+      })
+      .catch((err) => console.log("getting favorites from db error: ", err));
+    
     const newFavs = favoriteActivities.slice();
     for (let i = 0; i < newFavs.length; i++) {
       if (newFavs[i].id === businessId) {
@@ -140,6 +162,7 @@ const ActivitiesView = (props) => {
       .then((response) => {
         if (response.isLoggedIn) {
           setIsLoggedIn(true);
+          console.log("GET FAVORITES", response.favorites);
           if (response.favorites){
             setFavoriteActivities(response.favorites);
           }
@@ -148,7 +171,7 @@ const ActivitiesView = (props) => {
         }
       })
       .catch((err) => console.log("getting favorites from db error: ", err));
-  });
+  }, []);
 
   if (!fetchedData) {
     return <h1 id="title">Fetching from database</h1>;
