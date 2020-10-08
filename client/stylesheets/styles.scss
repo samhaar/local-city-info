@@ -301,23 +301,42 @@ strong {
 
   .detailed-weather-wrapper {
     display: grid;
-    grid-template: auto/repeat(1, 250px);
+    grid-template: auto/repeat(1, minmax(250px, 1fr));
     padding: 0 15px;
+    justify-items: center;
+    align-items: center;
   }
 
   #detailed-weather-current-day{
-    .weather-card{
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
+    padding: 0 15px;
+      .weather-card{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        
+        .weather-deatils {
+          text-align: center;
+          .temp-group{
+            justify-content: center;
+          }
+        }
+      }
 
       img, .weather-deatils{
         align-self: center;
       }
     }
   }
-  
+
+
+@media screen and (min-width: 700px) {
+  .detailed-weather-wrapper {
+    display: grid;
+    grid-template: auto/repeat(2, 250px);
+    padding: 0 15px;
+  }
 }
+
 @media screen and (min-width: 750px) {
   .activities-container {
     .card-deck {
