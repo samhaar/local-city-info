@@ -1,6 +1,7 @@
 const express = require('express');
 const path = require('path');
 const bodyParser = require('body-parser');
+const cookieParser = require('cookie-parser');
 const cors = require('cors');
 
 const app = express();
@@ -15,6 +16,7 @@ const favoritesRouter = require('./routes/favorites.js');
 const signinRouter = require('./routes/signin.js');
 
 // application-level middleware
+app.use(cookieParser());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors());

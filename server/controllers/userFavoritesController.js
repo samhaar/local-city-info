@@ -1,18 +1,6 @@
-/* eslint-disable */
 const db = require('../models/localCityInfoModel');
 
 const userFavoritesController = {};
-
-userFavoritesController.testUser = (req, res, next) => {
-  const { username, firstName, lastName } = req.body;
-  res.locals = {
-    ...res.locals,
-    username,
-    firstName,
-    lastName,
-  };
-  next();
-}
 
 userFavoritesController.addUser = (req, res, next) => {
   const { username, firstName, lastName } = res.locals;
@@ -35,7 +23,7 @@ userFavoritesController.getFavorites = async (req, res, next) => {
       INNER JOIN businesses b ON ufb.yelp_id = b.yelp_id
       WHERE username = $1;
   `;
-  
+
   try {
     const dbResponse = await db.query(query, [username]);
     res.locals.favoriteBusinesses = dbResponse.rows.map((el) => el.yelp_obj);
@@ -43,10 +31,10 @@ userFavoritesController.getFavorites = async (req, res, next) => {
   } catch (err) {
     return next(err);
   }
-}
+};
 
 userFavoritesController.setFavorite = async (req, res, next) => {
-  const { business } = req.body;
+  const business = req.body;
   const { id: yelp_id } = business;
   const { username } = res.locals;
 
@@ -72,8 +60,8 @@ userFavoritesController.setFavorite = async (req, res, next) => {
   }
 };
 
-userFavoritesController.deleteFavorite= async (req, res, next) => {
-  const { business } = req.body;
+userFavoritesController.deleteFavorite = async (req, res, next) => {
+  const business = req.body;
   const { id: yelp_id } = business;
   const { username } = res.locals;
 
@@ -101,8 +89,6 @@ userFavoritesController.deleteFavorite= async (req, res, next) => {
     console.log(err);
     return next(err);
   }
-}
-
-
+};
 
 module.exports = userFavoritesController;
