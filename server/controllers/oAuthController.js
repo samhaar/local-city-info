@@ -1,4 +1,7 @@
 const { OAuth2Client } = require('google-auth-library');
+require('dotenv').config();
+
+const CLIENT_ID = process.env.CLIENT_ID;
 
 const oAuthController = {};
 
@@ -12,13 +15,13 @@ oAuthController.verifyToken = (req, res, next) => {
   const token = req.headers.authorization;
   if (!token) return respondTokenNotValid();
 
-  const client = new OAuth2Client(process.env.CLIENT_ID);
+  const client = new OAuth2Client(CLIENT_ID);
 
   async function verify() {
     
     const ticket = await client.verifyIdToken({
       idToken: token,
-      audience: process.env.CLIENT_ID,
+      audience: CLIENT_ID,
     });
     
     console.log('IN VERIFY');
@@ -32,7 +35,7 @@ oAuthController.verifyToken = (req, res, next) => {
     res.locals.firstName = given_name;
     res.locals.lastName = family_name;
     res.locals.isLoggedIn = true;
-
+    console.log(email);
     return next();
   }
 

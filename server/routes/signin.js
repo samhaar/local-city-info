@@ -8,7 +8,7 @@ router.post('/',
   oAuthController.verifyToken,
   userFavoritesController.addUser,
   (req, res) => (
-    res.status(200).json({ authorized: res.locals.oAuth })
+    res.status(200).json({ authorized: res.locals.isLoggedIn })
   ));
 
 module.exports = router;
